@@ -13,6 +13,10 @@ export const OtpSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  otp_reference_id: {
+    type: String,
+    require: true,
+  },
 });
 
 export interface OtpSchemaInterface {

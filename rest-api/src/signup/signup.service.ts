@@ -25,6 +25,19 @@ export class SignupService {
       }
       const newUser = await new this.signupModel(request_data);
       const result = await newUser.save();
+      console.log(result, '==result==')
+
+      const otp = Math.floor(Math.random() * 99999 + 10000);
+      const otpReferenceId = (Math.random() + 99999).toString(36);
+
+      const _otp = new this.otpModel({
+        otp,
+        otp_for: 'SIGNUP',
+        otp_generated_by: result['_id'].toString(),
+        otp_reference_id: otpReferenceId,
+      });
+
+      await _otp.save()
 
       return new ApiResponse(201, true, 'Successfully created user.', [
         result,
