@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { StudentModule } from './student/student.module.js';
 import { SignupController } from './signup/signup.controller.js';
 import { SignupModule } from './signup/signup.module.js';
+import { CandidateModule } from './candidate/candidate.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { SignupModule } from './signup/signup.module.js';
     MongooseModule.forRoot(
       'mongodb+srv://omkarpatole1799:5555@cluster0.22ey9.mongodb.net/nestjs-rest?retryWrites=true&w=majority&appName=Cluster0',
     ),
+    CandidateModule,
   ],
   controllers: [SignupController],
   providers: [],

@@ -15,14 +15,21 @@ import {
   DeleteStudentInterface,
   UpdateStudentInterface,
 } from './student.types';
+import { CandidateService } from 'src/candidate/candidate.service';
 
 @Controller('student')
 export class StudentController {
-  constructor(private readonly studentService: StudentService) {}
+  constructor(
+    private readonly studentService: StudentService,
+    private readonly candidateService: CandidateService,
+  ) {}
 
   @Get()
   async getAllRegisteredStudents() {
+    console.log(await this.candidateService.testAddingNewCandidate(), '----');
+
     const allStudents = await this.studentService.getAllRegisteredStudents();
+
     return new ApiResponse(200, true, 'All Student Details', allStudents).res();
   }
 
